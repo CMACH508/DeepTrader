@@ -1,6 +1,8 @@
 # 2021-WangZhicheng
 
-This repository holds the Python implementation of the method described in WangZhicheng‘s thesis and his paper accpeted by AAAI 2021.
+Most existing reinforcement learning (RL)-based portfolio management models do not take into account the market conditions, which limits their performance in risk-return balancing. In this paper, we propose Deep-Trader, a deep RL method to optimize the investment policy. In particular, to tackle the risk-return balancing problem, our model embeds macro market conditions as an indicator to dynamically adjust the proportion between long and short funds, to lower the risk of market fluctuations, with the negative maximum drawdown as the reward function. Additionally, the model involves a unit to evaluate individual assets, which learns dynamic patterns from historical data with the price rising rate as the reward function. Both temporal and spatial de- pendencies between assets are captured hierarchically by a specific type of graph structure. Particularly, we find that the estimated causal structure best captures the interrelationships between assets, compared to industry classification and correlation. The two units are complementary and integrated to generate a suitable portfolio which fits the market trend well and strikes a balance between return and risk effectively. Experiments on three well-known stock indexes demonstrate the superiority of DeepTrader in terms of risk-gain criteria. 
+
+This repository holds the Python implementation of the method described in the paper published in AAAI 2021.
 
 ## Content
 
@@ -68,3 +70,20 @@ This project would not have been finished without using the codes or files from 
 - Environment.py is inspired by [PGPortfolio](https://github.com/ZhengyaoJiang/PGPortfolio)
 - README.md is inspired by [HPSG-Neural-Parser](https://github.com/DoodleJZ/HPSG-Neural-Parser#Requirements)
 
+
+## Reference
+
+Please cite our work if you find our code/paper is useful to your work.
+
+```
+@article{Wang_2021, 
+title={DeepTrader: A Deep Reinforcement Learning Approach for Risk-Return Balanced Portfolio Management with Market Conditions Embedding}, 
+author={Wang, Zhicheng and Huang, Biwei and Tu, Shikui and Zhang, Kun and Xu, Lei}, 
+journal={Proceedings of the AAAI Conference on Artificial Intelligence}, 
+volume={35}, 
+number={1}, 
+year={2021}, 
+month={May}, 
+pages={643-650} 
+}
+```
