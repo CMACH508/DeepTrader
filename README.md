@@ -4,6 +4,8 @@ Most existing reinforcement learning (RL)-based portfolio management models do n
 
 This repository holds the Python implementation of the method described in the paper published in AAAI 2021.
 
+Zhicheng Wang, Biwei Huang, Shikui Tu*, Kun Zhang, and Lei Xu*, “DeepTrader: A Deep Reinforcement Learning Approach to Risk-Return Balanced Portfolio Management with Market Conditions Embedding,” in Proceedings of the 35th AAAI Conference on Artificial Intelligence, AAAI-21, 2021, Feb.02-09
+
 ## Content
 
 1. [Requirements](#Requirements)
