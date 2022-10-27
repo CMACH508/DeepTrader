@@ -148,7 +148,7 @@ class RLAgent():
                                 / torch.std(rewards_total, dim=-1, keepdim=True)
 
                 gradient_asu = torch.stack(steps_asu_grad, dim=1)
-
+                gradient_asu = torch.nan_to_num(gradient_asu)
                 if self.args.msu_bool:
                     gradient_rho = (rewards_mdd * steps_log_p_rho)
                     loss = - (self.args.gamma * gradient_rho + gradient_asu)

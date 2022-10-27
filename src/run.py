@@ -82,7 +82,7 @@ def run(func_args):
             stocks_data = np.load(data_prefix + 'stocks_data.npy')
             rate_of_return = np.load(data_prefix + 'ror.npy')
             A = torch.from_numpy(np.load(matrix_path)).float().to(func_args.device)
-            test_idx = 1944
+            test_idx = 700
             market_history = None
             allow_short = False
 
@@ -92,7 +92,9 @@ def run(func_args):
                            max_steps=func_args.max_steps, mode=func_args.mode, norm_type=func_args.norm_type,
                            allow_short=allow_short)
 
-        supports = [A]
+        # supports = [A]
+        supports = None
+
         actor = RLActor(supports, func_args).to(func_args.device)
         agent = RLAgent(env, actor, func_args)
 
@@ -143,7 +145,7 @@ if __name__ == '__main__':
     parser.add_argument('--lr', type=float)
     parser.add_argument('--gamma', type=float)
     parser.add_argument('--no_spatial', dest='spatial_bool', action='store_false')
-    parser.add_argument('--no_msu', dest='msu_bool', action='store_false')
+    # parser.add_argument('--no_msu', dest='msu_bool', action='store_false')
     parser.add_argument('--relation_file', type=str)
     parser.add_argument('--addaptiveadj', dest='addaptive_adj_bool', action='store_false')
 
@@ -158,5 +160,10 @@ if __name__ == '__main__':
             options = json.load(f)
             args = ConfigParser(options)
     args.update(opts)
+
+    # print("*" * 40)
+    # print(opts.__dict__)
+    # print(args.__dict__)
+    # print("*" * 40)
 
     run(args)

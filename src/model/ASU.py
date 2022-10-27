@@ -94,7 +94,7 @@ class SAGCN(nn.Module):
 
         self.supports = supports
 
-        self.start_conv = nn.Conv1d(in_features, hidden_dim, kernel_size=(1, 1))
+        self.start_conv = nn.Conv2d(in_features, hidden_dim, kernel_size=(1, 1))
 
         self.bn_start = nn.BatchNorm2d(hidden_dim)
 
@@ -117,7 +117,7 @@ class SAGCN(nn.Module):
         a_s_records = []
         dilation = 1
         for l in range(layers):
-            tcn_sequence = nn.Sequential(nn.Conv1d(in_channels=hidden_dim,
+            tcn_sequence = nn.Sequential(nn.Conv2d(in_channels=hidden_dim,
                                                    out_channels=hidden_dim,
                                                    kernel_size=(1, kernel_size),
                                                    dilation=dilation),
@@ -127,7 +127,7 @@ class SAGCN(nn.Module):
 
             self.tcns.append(tcn_sequence)
 
-            self.residual_convs.append(nn.Conv1d(in_channels=hidden_dim,
+            self.residual_convs.append(nn.Conv2d(in_channels=hidden_dim,
                                                  out_channels=hidden_dim,
                                                  kernel_size=(1, 1)))
 
@@ -191,14 +191,14 @@ class LiteTCN(nn.Module):
         self.bns = nn.ModuleList()
         self.dropouts = nn.ModuleList()
 
-        self.start_conv = nn.Conv1d(in_features, hidden_size, kernel_size=1)
-        self.end_conv = nn.Conv1d(hidden_size, 1, kernel_size=1)
+        self.start_conv = nn.Conv2d(in_features, hidden_size, kernel_size=1)
+        self.end_conv = nn.Conv2d(hidden_size, 1, kernel_size=1)
 
         receptive_field = 1
         additional_scope = kernel_size - 1
         dilation = 1
         for l in range(num_layers):
-            tcn_sequence = nn.Sequential(nn.Conv1d(in_channels=hidden_size,
+            tcn_sequence = nn.Sequential(nn.Conv2d(in_channels=hidden_size,
                                                    out_channels=hidden_size,
                                                    kernel_size=kernel_size,
                                                    dilation=dilation),

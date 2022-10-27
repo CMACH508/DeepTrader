@@ -21,7 +21,7 @@
         6,
         4
     ],
-    "num_assets": 30,
+    "num_assets": 100,
     "G": 4,
     "mode": "train",
     "num_rounds": 80000,
@@ -30,8 +30,9 @@
     "momentum": 0.8,
     "norm_type": "standard",
     "epochs": 1500,
-    "market": "DJIA",
-    "device": "cuda",
+    "market": "CSI100",
+    "device": "cpu",
     "relation_file": "industry_classification.npy",
-    "trade_len": 21
+    "trade_len": 21,
+    "msu_bool": false
 }
