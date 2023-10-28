@@ -24,14 +24,14 @@
     "num_assets": 30,
     "G": 4,
     "mode": "train",
-    "num_rounds": 80000,
+    "num_rounds": 8,
     "max_grad_norm": 100.0,
     "weight_decay": 0.001,
     "momentum": 0.8,
     "norm_type": "standard",
-    "epochs": 1500,
+    "epochs": 2,
     "market": "DJIA",
-    "device": "cuda",
+    "device": "mps",
     "relation_file": "industry_classification.npy",
     "trade_len": 21
 }

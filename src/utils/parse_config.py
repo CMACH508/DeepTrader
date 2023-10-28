@@ -29,14 +29,16 @@ class ConfigParser(object):
         self._device()
 
     def _device(self):
-        if self.use_gpu and torch.cuda.is_available():
-            self.device = torch.device('cuda')
-        else:
-            self.device = torch.device('cpu')
+        self.device = torch.device('mps')
+        # if self.use_gpu and torch.cuda.is_available():
+        #     self.device = torch.device('cuda')
+        # else:
+        #     self.device = torch.device('cpu')
 
     def save(self, save_dir):
         dic = self.__dict__
-        dic['device'] = 'cuda' if dic['device'] == torch.device('cuda') else 'cpu'
+        # dic['device'] = 'cuda' if dic['device'] == torch.device('cuda') else 'cpu'
+        dic['device'] = 'cpu'
         js = json.dumps(dic)
         with open(save_dir, 'w') as f:
             f.write(js)
