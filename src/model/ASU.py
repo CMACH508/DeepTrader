@@ -231,40 +231,40 @@ class LiteTCN(nn.Module):
 
     def forward(self, X):
         # original shape of X, window_length, stock, features
-        print('shape of X before permute ', X.shape)
+        # print('shape of X before permute ', X.shape)
         X = X.permute(0, 2, 1)
         # after permute
-        print('shape of x after permute ', X.shape)
-        print('after permute, data is window_length , features, stock')
+        # print('shape of x after permute ', X.shape)
+        # print('after permute, data is window_length , features, stock')
 
         in_len = X.shape[0]
-        print('in_len ', in_len)
+        # print('in_len ', in_len)
         if in_len < self.receptive_field:
             x = nn.functional.pad(X, (self.receptive_field - in_len, 0))
         else:
             x = X
 
-        print('before start_conv X is ', x.shape)
+        # print('before start_conv X is ', x.shape)
         x = self.start_conv(x)
-        print('after start_conv X is ', x.shape)
+        # print('after start_conv X is ', x.shape)
 
         for i in range(self.num_layers):
             residual = x
-            print('residual shape ', residual.shape)
+            # print('residual shape ', residual.shape)
             assert not torch.isnan(x).any()
             x = self.tcns[i](x)
-            print('after tcn x is ', x.shape)
+            # print('after tcn x is ', x.shape)
             assert not torch.isnan(x).any()
             x = x + residual[:, :, -x.shape[-1]:]
-            print('after summing residual and x, x is ', x.shape)
+            # print('after summing residual and x, x is ', x.shape)
 
             x = self.bns[i](x)
-            print('after bns, shape of x is ', x.shape)
+            # print('after bns, shape of x is ', x.shape)
         assert not torch.isnan(x).any()
 
-        print('before end_conv x is ', x.shape)
+        # print('before end_conv x is ', x.shape)
         x = self.end_conv(x)
-        print('after end_conv x is ', x.shape)
+        # print('after end_conv x is ', x.shape)
 
         x_squeezed = torch.sigmoid(x.squeeze())
         return x_squeezed
